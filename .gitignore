@@ -1,3 +1,8 @@
+# Custom
+.vscode/
+outputs/
+result_cds/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
