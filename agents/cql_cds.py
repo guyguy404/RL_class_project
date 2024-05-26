@@ -337,6 +337,7 @@ class CDSAgent(Agent):
         return metrics
 
     def save(self, dir: Path) -> None:
+        print("Save new best model")
         torch.save(self.actor, dir / "actor.pth")
         torch.save(self.critic, dir / "critic.pth")
     
