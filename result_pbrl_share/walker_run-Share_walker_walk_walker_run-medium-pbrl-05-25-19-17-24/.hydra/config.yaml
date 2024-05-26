@@ -1,0 +1,47 @@
+agent:
+  _target_: agents.pbrl.PBRLAgent
+  name: pbrl
+  obs_shape: ???
+  action_shape: ???
+  device: ${device}
+  lr: 0.0001
+  critic_target_tau: 0.005
+  actor_target_tau: 0.005
+  policy_freq: 2
+  use_tb: true
+  hidden_dim: 1024
+  policy_noise: 0.2
+  noise_clip: 0.5
+  batch_size: 1024
+  num_expl_steps: ???
+  num_random: 3
+  ucb_ratio_in: 0.001
+  ensemble: 5
+  ood_noise: 0.01
+  ucb_ratio_ood_init: 3.0
+  ucb_ratio_ood_min: 0.1
+  ood_decay_factor: 0.99995
+  share_ratio: 1.5
+task: walker_run
+share_task:
+- walker_walk
+- walker_run
+data_type:
+- medium
+- medium-replay
+discount: 0.99
+num_grad_steps: 1000000
+log_every_steps: 1000
+eval_every_steps: 10000
+num_eval_episodes: 10
+replay_buffer_dir: collected_data
+replay_buffer_size: 10000000
+replay_buffer_num_workers: 1
+batch_size: ${agent.batch_size}
+seed: 1
+device: cuda
+save_video: false
+use_tb: false
+is_single: false
+data_main: expert
+wandb: false
